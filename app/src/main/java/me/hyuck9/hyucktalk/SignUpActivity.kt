@@ -70,11 +70,11 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("SignupActivity", "onActivityResult")
+        Log.d("SignUpActivity", "onActivityResult")
         if ( requestCode == PICK_FROM_ALBUM && resultCode == RESULT_OK ) {
             signup_iv_profile.setImageURI(data!!.data)  // 가운데 뷰를 바꿈
             imageUri = data.data                        // 이미지 경로 원본
-            Log.d("SignupActivity", "onActivityResult - imageUri : $imageUri")
+            Log.d("SignUpActivity", "onActivityResult - imageUri : $imageUri")
         }
     }
 }
