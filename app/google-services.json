@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "16256968558",
+    "firebase_url": "https://hyucktalk.firebaseio.com",
+    "project_id": "hyucktalk",
+    "storage_bucket": "hyucktalk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16256968558:android:30b649bf28e3f78e",
+        "android_client_info": {
+          "package_name": "me.hyuck9.hyucktalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16256968558-2tub6kcbpup6umapdld4nsj26csij6v3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.hyuck9.hyucktalk",
+            "certificate_hash": "d2e5430103adddd827850f51975ff78a72d69949"
+          }
+        },
+        {
+          "client_id": "16256968558-d7m9ve8lmnli1i1a0al4anqe38flfppq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXhH5EVigRZ4uznbUdrz9I3Ait_73HfYU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16256968558-d7m9ve8lmnli1i1a0al4anqe38flfppq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
