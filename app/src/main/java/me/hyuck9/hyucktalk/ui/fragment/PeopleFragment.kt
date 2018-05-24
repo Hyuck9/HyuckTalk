@@ -1,23 +1,23 @@
-package me.hyuck9.hyucktalk.fragment
+package me.hyuck9.hyucktalk.ui.fragment
 
 
+import android.app.ActivityOptions
 import android.os.Bundle
 import android.app.Fragment
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_people.*
 import me.hyuck9.hyucktalk.R
 import me.hyuck9.hyucktalk.adapter.PeopleAdapter
 import me.hyuck9.hyucktalk.model.User
+import me.hyuck9.hyucktalk.ui.activity.MessageActivity
 
 /**
  * A simple [Fragment] subclass.
@@ -26,7 +26,16 @@ import me.hyuck9.hyucktalk.model.User
 class PeopleFragment : Fragment() {
 
     private val users = mutableListOf<User>()
-    private val peopleAdapter = PeopleAdapter(users)
+    private val peopleAdapter = PeopleAdapter(users) {
+//        with(it) {
+            Intent(activity, MessageActivity::class.java).let { intent ->
+                ActivityOptions.makeCustomAnimation(activity, R.anim.from_right, R.anim.to_left).let { option ->
+                    startActivity(intent, option.toBundle())
+
+                }
+            }
+//        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_people, container, false)

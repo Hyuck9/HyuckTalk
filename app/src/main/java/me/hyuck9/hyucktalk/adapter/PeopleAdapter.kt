@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_friend.view.*
 import me.hyuck9.hyucktalk.R
 import me.hyuck9.hyucktalk.model.User
 
-class PeopleAdapter(private val users : MutableList<User>) : RecyclerView.Adapter<PeopleAdapter.Holder>() {
+class PeopleAdapter(private val users : MutableList<User>, private val onClick: ((User) -> Unit) ) : RecyclerView.Adapter<PeopleAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val retView = LayoutInflater.from(parent.context)
@@ -28,6 +28,7 @@ class PeopleAdapter(private val users : MutableList<User>) : RecyclerView.Adapte
                         .apply(RequestOptions().circleCrop())
                         .into(tvFriendProfile)
                 tvFriendId.text = user.userName
+                itemView.setOnClickListener { onClick(user) }
             }
         }
     }

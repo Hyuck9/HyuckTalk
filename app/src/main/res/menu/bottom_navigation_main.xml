@@ -8,11 +8,11 @@
 
     <item
         android:id="@+id/action_chat"
-        android:icon="@drawable/ic_people_black_24dp"
+        android:icon="@drawable/ic_chat_black_24dp"
         android:title="@string/bottom_menu_chat" />
 
     <item
         android:id="@+id/action_account"
-        android:icon="@drawable/ic_people_black_24dp"
+        android:icon="@drawable/ic_account_circle_black_24dp"
         android:title="@string/bottom_menu_account" />
 </menu>

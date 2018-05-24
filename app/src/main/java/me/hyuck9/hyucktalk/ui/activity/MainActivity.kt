@@ -1,8 +1,9 @@
-package me.hyuck9.hyucktalk
+package me.hyuck9.hyucktalk.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import me.hyuck9.hyucktalk.fragment.PeopleFragment
+import me.hyuck9.hyucktalk.R
+import me.hyuck9.hyucktalk.ui.fragment.PeopleFragment
 
 
 class MainActivity : AppCompatActivity() {

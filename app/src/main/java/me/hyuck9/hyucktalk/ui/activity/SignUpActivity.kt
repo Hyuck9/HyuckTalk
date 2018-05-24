@@ -1,4 +1,4 @@
-package me.hyuck9.hyucktalk
+package me.hyuck9.hyucktalk.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
@@ -16,11 +16,16 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import me.hyuck9.hyucktalk.R
 import me.hyuck9.hyucktalk.model.User
 
-const val PICK_FROM_ALBUM = 10
-
 class SignUpActivity : AppCompatActivity() {
+
+    companion object {
+
+        const val PICK_FROM_ALBUM = 10
+
+    }
 
     var splashBackground: String? = null
 

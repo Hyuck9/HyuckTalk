@@ -1,4 +1,4 @@
-package me.hyuck9.hyucktalk
+package me.hyuck9.hyucktalk.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
@@ -10,6 +10,8 @@ import android.view.WindowManager
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_splash.*
+import me.hyuck9.hyucktalk.BuildConfig
+import me.hyuck9.hyucktalk.R
 
 
 class SplashActivity : AppCompatActivity() {

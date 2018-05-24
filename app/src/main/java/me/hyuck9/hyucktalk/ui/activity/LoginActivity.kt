@@ -1,4 +1,4 @@
-package me.hyuck9.hyucktalk
+package me.hyuck9.hyucktalk.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.android.synthetic.main.activity_login.*
+import me.hyuck9.hyucktalk.R
 
 class LoginActivity : AppCompatActivity() {
 
