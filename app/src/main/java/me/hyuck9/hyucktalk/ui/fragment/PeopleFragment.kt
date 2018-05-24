@@ -27,14 +27,12 @@ class PeopleFragment : Fragment() {
 
     private val users = mutableListOf<User>()
     private val peopleAdapter = PeopleAdapter(users) {
-//        with(it) {
-            Intent(activity, MessageActivity::class.java).let { intent ->
-                ActivityOptions.makeCustomAnimation(activity, R.anim.from_right, R.anim.to_left).let { option ->
-                    startActivity(intent, option.toBundle())
-
-                }
+        Intent(activity, MessageActivity::class.java).let { intent ->
+            intent.putExtra("destinationUid", it.uid)
+            ActivityOptions.makeCustomAnimation(activity, R.anim.from_right, R.anim.to_left).let { option ->
+                startActivity(intent, option.toBundle())
             }
-//        }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -66,49 +64,6 @@ class PeopleFragment : Fragment() {
                 }
             })
     }
-
-
-//    inner class PeopleFragmentRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-//
-//        var users: ArrayList<User>? = null
-//
-//        init {
-//            users = ArrayList()
-//            FirebaseDatabase.getInstance().getReference("users").addValueEventListener(object : ValueEventListener {
-//                override fun onDataChange(dataSnapshot: DataSnapshot?) {
-//                    users!!.clear()
-//                    for (snapshot in dataSnapshot!!.children) {
-//                        users!!.add(snapshot.getValue(User::class.java)!!)
-//                    }
-//                    notifyDataSetChanged()
-//                }
-//
-//                override fun onCancelled(p0: DatabaseError?) {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//            })
-//        }
-//
-//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-//            val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_people, parent, false)
-//            return CustomViewHolder(view)
-//        }
-//
-//        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        }
-//
-//        override fun getItemCount(): Int {
-//            return users!!.size
-//        }
-//
-//        inner class CustomViewHolder(view: View?) : RecyclerView.ViewHolder(view) {
-//            val imageView = view!!.findViewById(R.id.friend_i_imageView) as ImageView
-//            val textView = view!!.findViewById(R.id.friend_i_textView) as TextView
-//
-//        }
-//
-//    }
 
 
 }

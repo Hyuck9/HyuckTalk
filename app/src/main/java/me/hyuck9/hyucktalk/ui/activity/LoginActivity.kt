@@ -25,9 +25,9 @@ class LoginActivity : AppCompatActivity() {
         mFirebaseAuth.signOut()
 
         val splashBackground = mFirebaseRemoteConfig.getString(getString(R.string.rc_color))
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = Color.parseColor(splashBackground)
-        }
+//        }
 
 
         login_a_btn_login.setBackgroundColor(Color.parseColor(splashBackground))

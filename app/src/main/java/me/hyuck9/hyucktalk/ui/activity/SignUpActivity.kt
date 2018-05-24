@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -22,9 +23,7 @@ import me.hyuck9.hyucktalk.model.User
 class SignUpActivity : AppCompatActivity() {
 
     companion object {
-
         const val PICK_FROM_ALBUM = 10
-
     }
 
     var splashBackground: String? = null
@@ -35,52 +34,73 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        /*val mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-        splashBackground = mFirebaseRemoteConfig.getString(getString(R.string.rc_color))
-        // apply 이용하여 아래 코드로 간소화*/
         FirebaseRemoteConfig.getInstance().apply {
             splashBackground = getString(getString(R.string.rc_color))
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = Color.parseColor(splashBackground)
+//        }
+
+        signup_a_iv_profile.setOnClickListener{ profileImageClicked() }
+
+        signup_a_btn_signup.apply {
+            setOnClickListener { signUpButtonClicked() }
+            setBackgroundColor(Color.parseColor(splashBackground))
         }
 
-        signup_a_iv_profile.setOnClickListener({
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = MediaStore.Images.Media.CONTENT_TYPE
-            startActivityForResult(intent, PICK_FROM_ALBUM)
-        })
+    }
 
-        signup_a_btn_signup.setBackgroundColor(Color.parseColor(splashBackground))
-        signup_a_btn_signup.setOnClickListener({
+    /**
+     * 프로필 이미지 등록 버튼 이벤트
+     */
+    private fun profileImageClicked() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = MediaStore.Images.Media.CONTENT_TYPE
+        startActivityForResult(intent, PICK_FROM_ALBUM)
+    }
 
-            if ( signup_a_et_email.text.toString().isEmpty() ) {
-                return@setOnClickListener
+    /**
+     * 회원가입 버튼 이벤트
+     */
+    private fun signUpButtonClicked() {
+        val name = signup_a_et_name.text.toString()
+        val email = signup_a_et_email.text.toString()
+        val password = signup_a_et_password.text.toString()
+
+        if ( name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() ) {
+            imageUri?.let {
+                createUser(email, password, name)
             }
+        }
+    }
 
-            FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(signup_a_et_email.text.toString(), signup_a_et_password.text.toString())
-                    .addOnCompleteListener(this, { task: Task<AuthResult> ->
-                        val uid = task.result.user.uid
-                        FirebaseStorage.getInstance().getReference("userImages").child(uid).putFile(imageUri!!).addOnCompleteListener { taskSnapshot: Task<UploadTask.TaskSnapshot> ->
-                            @Suppress("DEPRECATION")
-                            val imageUrl = taskSnapshot.result.downloadUrl.toString()
+    /**
+     * Firebase Authentication에 User Email 등록
+     * Firebase Storage에 User Profile Image 등록
+     * Firebase Database에 User 정보 등록
+     */
+    private fun createUser(email: String, password: String, name: String) {
+        FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task: Task<AuthResult> ->
+                    val uid = task.result.user.uid
+                    FirebaseStorage.getInstance()
+                            .getReference("userImages")
+                            .child(uid)
+                            .putFile(imageUri!!)
+                            .addOnCompleteListener { taskSnapshot: Task<UploadTask.TaskSnapshot> ->
+                                @Suppress("DEPRECATION")
+                                val imageUrl = taskSnapshot.result.downloadUrl.toString()
 
-                            val user = User(
-                                    signup_a_et_name.text.toString(),
-                                    imageUrl,
-                                    uid
-                            )
-//                            user.userName = signup_a_et_name.text.toString()
-//                            user.profileImageUrl = imageUrl
+                                val user = User(name, imageUrl, uid)
 
-                            FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(user)
-                        }
+                                FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(user).addOnCompleteListener {
+                                    this@SignUpActivity.finish()
+                                }
+                            }
 
-                    })
-        })
-
+                }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
