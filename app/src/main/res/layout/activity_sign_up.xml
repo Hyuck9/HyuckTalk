@@ -8,46 +8,49 @@
     tools:context=".SignUpActivity">
 
     <ImageView
-        android:id="@+id/signup_iv_profile"
+        android:id="@+id/signup_a_iv_profile"
         android:src="@drawable/ic_add_to_photos_black_24dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="50dp"/>
+        android:layout_margin="50dp"
+        android:contentDescription="Profile Image" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/signup_et_email"
-            android:hint="이메일"
+            android:id="@+id/signup_a_et_email"
+            android:hint="@string/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/signup_et_name"
-            android:hint="이름"
+            android:id="@+id/signup_a_et_name"
+            android:hint="@string/name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/signup_et_password"
-            android:hint="비밀번호"
+            android:id="@+id/signup_a_et_password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/signup_btn_signup"
-        android:text="회원가입"
+        android:id="@+id/signup_a_btn_signup"
+        android:text="@string/sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -21,14 +21,20 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(BuildConfig.DEBUG)
                 .build()
+        /*mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
         mFirebaseRemoteConfig.setConfigSettings(configSettings)
 
         // 인앱 기본값 설정
         mFirebaseRemoteConfig.setDefaults(R.xml.default_config)
+        // run 함수 사용하여 아래 코드로 간소화 */
+        FirebaseRemoteConfig.getInstance().run {
+            mFirebaseRemoteConfig = this
+            setConfigSettings(configSettings)
+            setDefaults(R.xml.default_config)
+        }
 
 
     }
@@ -54,7 +60,7 @@ class SplashActivity : AppCompatActivity() {
         val caps = mFirebaseRemoteConfig.getBoolean("splash_message_caps")
         val splashMessage = mFirebaseRemoteConfig.getString("splash_message")
 
-        splash_linearLayout.setBackgroundColor(Color.parseColor(splashBackground))
+        splash_a_linearLayout.setBackgroundColor(Color.parseColor(splashBackground))
 
         if ( caps ) {
             val builder = AlertDialog.Builder(this)

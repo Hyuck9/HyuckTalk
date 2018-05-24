@@ -11,17 +11,19 @@
     <ImageView
         android:src="@drawable/loading_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:contentDescription="LOGO" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/login_et_id"
+            android:id="@+id/login_a_et_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="아이디"/>
+            android:hint="@string/id"
+            android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -30,24 +32,24 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/login_et_password"
+            android:id="@+id/login_a_et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="비밀번호"/>
+            android:hint="@string/password"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:text="로그인"
-        android:id="@+id/login_btn_login"
+        android:text="@string/login"
+        android:id="@+id/login_a_btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:layout_marginTop="5dp"
-        android:text="회원가입"
-        android:id="@+id/login_btn_signup"
+        android:text="@string/sign_up"
+        android:id="@+id/login_a_btn_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

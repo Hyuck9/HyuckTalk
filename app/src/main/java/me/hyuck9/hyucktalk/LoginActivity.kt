@@ -29,14 +29,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        login_btn_login.setBackgroundColor(Color.parseColor(splashBackground))
-        login_btn_signup.setBackgroundColor(Color.parseColor(splashBackground))
+        login_a_btn_login.setBackgroundColor(Color.parseColor(splashBackground))
+        login_a_btn_signup.setBackgroundColor(Color.parseColor(splashBackground))
 
 
-        login_btn_login.setOnClickListener {
+        login_a_btn_login.setOnClickListener {
             loginEvent()
         }
-        login_btn_signup.setOnClickListener({
+        login_a_btn_signup.setOnClickListener({
             startActivity(Intent(this, SignUpActivity::class.java))
         })
 
@@ -54,8 +54,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginEvent() {
-        var id = login_et_id.text.toString()
-        var pw = login_et_password.text.toString()
+        var id = login_a_et_id.text.toString()
+        var pw = login_a_et_password.text.toString()
 
         if ( id.isEmpty() || pw.isEmpty() ) {
             Toast.makeText(this, "아이디와 비밀번호를 입력해 주세요.", Toast.LENGTH_LONG).show()
