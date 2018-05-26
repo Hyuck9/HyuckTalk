@@ -10,7 +10,21 @@ import kotlinx.android.synthetic.main.item_friend.view.*
 import me.hyuck9.hyucktalk.R
 import me.hyuck9.hyucktalk.model.User
 
-class PeopleAdapter(private val users : MutableList<User>, private val onClick: ((User) -> Unit) ) : RecyclerView.Adapter<PeopleAdapter.Holder>() {
+class PeopleAdapter(private val onClick: ((User) -> Unit) ) : RecyclerView.Adapter<PeopleAdapter.Holder>() {
+
+    /**
+     * 메세지 정보
+     */
+    private val users = mutableListOf<User>()
+
+    fun addItem(user: User) {
+        users.add(user)
+        notifyDataSetChanged()
+    }
+
+    fun clearItem() {
+        users.clear()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val retView = LayoutInflater.from(parent.context)

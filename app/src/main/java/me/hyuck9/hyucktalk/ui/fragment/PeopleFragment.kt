@@ -26,8 +26,7 @@ import me.hyuck9.hyucktalk.ui.activity.MessageActivity
  */
 class PeopleFragment : Fragment() {
 
-    private val users = mutableListOf<User>()
-    private val peopleAdapter = PeopleAdapter(users) {
+    private val peopleAdapter = PeopleAdapter {
         Intent(activity, MessageActivity::class.java).let { intent ->
             intent.putExtra("destinationUid", it.uid)
             ActivityOptions.makeCustomAnimation(activity, R.anim.from_right, R.anim.to_left).let { option ->
@@ -57,15 +56,14 @@ class PeopleFragment : Fragment() {
         val myUid = FirebaseAuth.getInstance().currentUser!!.uid
         FirebaseDatabase.getInstance().getReference("users").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                    users.clear()
+                    peopleAdapter.clearItem()
                     dataSnapshot!!.children.forEach {
                         it.getValue(User::class.java).let { user ->
                             if ( user!!.uid.equals(myUid) ) return@forEach
-                            users.add(user)
+                            peopleAdapter.addItem(user)
                         }
 
                     }
-                    peopleAdapter.notifyDataSetChanged()
                 }
 
                 override fun onCancelled(error: DatabaseError?) {

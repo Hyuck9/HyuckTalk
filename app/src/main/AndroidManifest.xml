@@ -19,7 +19,7 @@
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.SignUpActivity" />
         <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.MessageActivity"></activity>
+        <activity android:name=".ui.activity.MessageActivity" />
     </application>
 
 </manifest>
